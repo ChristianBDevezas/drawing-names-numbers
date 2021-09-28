@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #dbdad8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+}
+body.show-bg::after {
+    background: rgba(0, 0, 0, .8);
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+}
+
+section.draws {
+    max-width: 700px;
+    margin: 20px auto 0 auto;
+    padding: 0 10px;
+    position: relative;
+}
+
+.alert-message {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: orange;
+    color: white;
+    z-index: 3;
+    border-radius: 3px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+}
+.show.alert-message {
+    width: 250px;
+    height: 70px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.alert-message i.fa-times {
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    cursor: pointer;
+}
+
+h2.draws__title {
+    text-align: center;
+    text-shadow: 1px 1px 1px #ff9c2a, 2px 2px 3px #1a40bb;
+    margin-bottom: 40px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input[type="text"] {
+    border: 2px solid #b6b4b4;
+    padding: 6px 7px;
+    outline: none;
+    border-radius: 3px;
+    min-width: 230px;
+    font-size: .9rem;
+    margin-right: 12px;
+}
+input[type="text"]:focus {
+    border-color: #416ada;
+}
+
+.draws__input-add {
+    display: flex;
+    justify-content: center;
+}
+
+::placeholder {
+    font-size: .8rem;
+}
+
+button {
+    font-size: .9rem;
+    padding: 5px 7px;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    border: 2px solid black;
+    transition: .5s;
+}
+button:hover {
+    color: white;
+}
+
+button {
+    position: relative;
+    background-image: linear-gradient(to top, green, yellow);
+    transition: background-image 0.5s;
+    z-index: 1;
+}
+button::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, green, yellow);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.45s;
+}
+button:hover::before {
+    opacity: 1;
+}
+
+p.draws__subtitle {
+    text-align: center;
+    margin-top: 35px;
+}
+
+ul.container-list {
+    list-style: none;
+    margin: 8px 0 25px 0;
+    border: 2px solid black;
+    border-radius: 5px;
+    min-height: 25px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+ul.container-list::before {
+    content: '';
+    position: absolute;
+    top: -2.5px;
+    bottom: -2.5px;
+    right: -8.5px;
+    left: -8.5px;
+    background: linear-gradient(to top, #ebeae8, #dad2c4);
+    border-radius: 3px;
+    border: 2px solid black;
+}
+
+ul.container-list li {
+    margin: 8px 0;
+    padding: 7px 0 7px 8px;
+    background-color: white;
+    position: relative;
+    border-radius: 2px;
+}
+
+i.fa-times-circle {
+    position: absolute;
+    top: 8px;
+    right: 7px;
+    cursor: pointer;
+    color: red;
+    font-size: 1.1rem;
+    opacity: .55;
+    transition: .35s;
+}
+i.fa-times-circle:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+p.draws__message {
+    text-align: center;
+    margin-bottom: 20px;    
+    font-size: .75rem;
+    opacity: 0;
+    max-height: 0;
+    transition: all .8s;
+}
+p.draws__message.show-message {
+    opacity: 1;
+    max-height: 20px;
+}
+
+.draws__btn {
+    display: flex;
+    justify-content: center;
+}
+
+.draws__btn button.clear {
+    margin-left: 20px;
+}
+
+.draws__result {
+    margin-top: 28px;
+    text-align: center;
+}
+
+h2.result-counter {
+    margin-bottom: 13px;
+}
+
+h2.show-result {
+    margin-bottom: 50px;
+    font-size: 1.6rem;
+
+}
+
+span.name-result {
+    background-image: linear-gradient(to bottom, #e7e7e7, #bbb8b8);
+    border: 1px solid black;
+    border-radius: 3px;
+    font-family: 'Raleway', sans-serif;
+    padding: 4px 7px;
+    animation: blink-text 2s infinite 1.4s;
+}
+@keyframes blink-text {
+    0% {color: black;}
+    25% {color: #134b9e; text-shadow: 1px 1px 2px white;}
+    75% {color: #134b9e; text-shadow: 1px 1px 2px white;}
+    100% {color: black;}
+}
