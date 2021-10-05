@@ -54,7 +54,7 @@ section.draws {
     transition: all .5s;
 }
 .show.alert-message {
-    width: 250px;
+    width: 290px;
     height: 70px;
     opacity: 1;
     visibility: visible;
@@ -146,8 +146,13 @@ ul.container-list {
     width: 100%;
     position: relative;
     z-index: 2;
+    padding: 0;
+    min-height: 100px;
+    max-height: 233px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
-ul.container-list::before {
+/* ul.container-list::before {
     content: '';
     position: absolute;
     top: -2.5px;
@@ -157,14 +162,17 @@ ul.container-list::before {
     background: linear-gradient(to top, #ebeae8, #dad2c4);
     border-radius: 3px;
     border: 2px solid black;
-}
+} */
 
 ul.container-list li {
-    margin: 8px 0;
+    margin: 0px 1px 8px 0;
     padding: 7px 0 7px 8px;
     background-color: white;
     position: relative;
     border-radius: 2px;
+}
+ul.container-list li:last-child {
+    margin-bottom: 0;
 }
 
 i.fa-times-circle {
