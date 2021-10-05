@@ -14,7 +14,7 @@ let names = [];
 function showMessage() {
     document.body.classList.add("show-bg");
     alertMessage.classList.add("show");
-    alertTitle.innerText = "Type a name!"
+    alertTitle.innerText = "Type a name or a number!"
 
     let timeMessage = setTimeout(() => {
         document.body.classList.remove("show-bg");
