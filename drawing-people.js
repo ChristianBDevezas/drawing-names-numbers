@@ -19,12 +19,21 @@ function showMessage() {
     let timeMessage = setTimeout(() => {
         document.body.classList.remove("show-bg");
         alertMessage.classList.remove("show");
-    }, 2500);    
+    }, 2500);
 
     closeBtn.addEventListener("click", () => {
         document.body.classList.remove("show-bg");
         alertMessage.classList.remove("show");
         clearTimeout(timeMessage);
+    });
+}
+
+function updateListItems() {
+    names = [];
+
+    let allItems = document.querySelectorAll("li");
+    allItems.forEach((item) => {
+        names.push(item.innerText);
     });
 }
 
@@ -36,15 +45,31 @@ btnAdd.addEventListener("click", () => {
     }
     else {
         // add item to the list
-        let listItem = document.createElement("li");
-        listItem.innerText = `${inputValue}`;
+        const listItem = document.createElement("li");
         ulContainer.appendChild(listItem);
 
-        // create icon for each list item
-        let removeIcon = document.createElement("i");
+        // create the text for each list item
+        const listItemText = document.createElement("span");
+        listItemText.classList.add("item");
+        listItemText.innerText = `${inputValue}`;
+        listItem.appendChild(listItemText);
+
+        // create edit icon for each list item
+        const editIcon = document.createElement("i");
+        editIcon.setAttribute("class", "fas fa-edit");
+        listItem.appendChild(editIcon);
+
+        // create remove icon for each list item
+        const removeIcon = document.createElement("i");
         removeIcon.setAttribute("class", "fas fa-times-circle");
         listItem.appendChild(removeIcon);
-        
+
+        // create input for each list item
+        const inputItem = document.createElement("input");
+        inputItem.setAttribute("type", "text");
+        listItem.appendChild(inputItem);
+        inputItem.style.display = "none";
+
         // add item to the names array
         names.push(inputValue);
     }
@@ -53,27 +78,54 @@ btnAdd.addEventListener("click", () => {
     document.querySelector("input").value = "";
     document.querySelector("input").focus();
 
-    console.log(names);
+    // console.log(names);
 
-    // select all icons of the list
+    // select all removeIcons of the list
     let removeIcons = document.querySelectorAll("i.fa-times-circle");
+});
 
-    // remove selected item
-    removeIcons.forEach((icon) => {
-        icon.addEventListener("click", (e) => {
-            let parentIcon = e.target.parentElement;
+ulContainer.addEventListener("click", (e) => {
+    if(e.target.classList[1] == "fa-edit") {
+        let parentItem = e.target.parentElement;
+        let inputItem = parentItem.lastElementChild;
+        console.log(parentItem);
+ 
+        if(inputItem.style.display == "inline-block") {
+            inputItem.style.display = "none";
+            parentItem.firstElementChild.style.display = "block";
+        }
+        else {
+            inputItem.style.display = "inline-block";
+            inputItem.value = parentItem.firstElementChild.textContent;
+            parentItem.firstElementChild.style.display = "none";
+        }
+        inputItem.focus();
+
+        updateListItems();
+
+        inputItem.addEventListener("keypress", (e) => {
+            if(e.keyCode === 13) {
+
+                if(inputItem.value !== '') {
+                    parentItem.firstElementChild.textContent = inputItem.value;
+                    parentItem.firstElementChild.style.display = "block";
+                    inputItem.style.display = 'none';
+                } 
+                else {
+                    var li = inputItem.parentNode;
+                    li.parentNode.removeChild(li);
+                }
+            }
+
+            updateListItems();
+        });
+    }
+    else if(e.target.classList[1] == "fa-times-circle") {
+        let parentIcon = e.target.parentElement;
             parentIcon.remove();
 
-            names = [];
-            // result.innerHTML = "";
-
-            let allItems = document.querySelectorAll("li");
-            allItems.forEach((item) => {
-                names.push(item.innerText);
-            });
-            console.log(names);
-        });
-    });
+            updateListItems();
+    }
 });
 
 let counter = 4;
@@ -92,17 +144,17 @@ drawNames.addEventListener("click", () => {
         if(clicked < 2) {
             let showCounting = setInterval(countdown, 880);
 
-            function countdown() {                
+            function countdown() {
                 counterResult.innerHTML = counter;
                 counter--;
                 if(counter < 0) {
-                    clearInterval(showCounting);                    
-                    result.innerHTML = `The winner is <span class="name-result">${names[randomNames]}</span>`;  
+                    clearInterval(showCounting);
+                    result.innerHTML = `The winner is <span class="name-result">${names[randomNames]}</span>`;
                     counterResult.innerHTML = "";
-                    setTimeout(() => clearMessage.classList.add("show-message") = "block", 1000);
+                    setTimeout(() => clearMessage.classList.add("show-message"), 1000);
                 }
             }
-        }        
+        }
     }
 });
 

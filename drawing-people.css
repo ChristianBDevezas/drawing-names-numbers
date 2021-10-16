@@ -152,17 +152,6 @@ ul.container-list {
     overflow-x: hidden;
     overflow-y: scroll;
 }
-/* ul.container-list::before {
-    content: '';
-    position: absolute;
-    top: -2.5px;
-    bottom: -2.5px;
-    right: -8.5px;
-    left: -8.5px;
-    background: linear-gradient(to top, #ebeae8, #dad2c4);
-    border-radius: 3px;
-    border: 2px solid black;
-} */
 
 ul.container-list li {
     margin: 0px 1px 8px 0;
@@ -175,7 +164,11 @@ ul.container-list li:last-child {
     margin-bottom: 0;
 }
 
-i.fa-times-circle {
+span.item {
+    margin-right: 2px;
+}
+
+i.fa-times-circle, i.fa-edit {
     position: absolute;
     top: 8px;
     right: 7px;
@@ -188,6 +181,15 @@ i.fa-times-circle {
 i.fa-times-circle:hover {
     opacity: 1;
     transform: rotate(90deg);
+}
+
+i.fa-edit {
+    right: 35px;
+    color: green;
+    font-size: 1.05rem;
+}
+i.fa-edit:hover {
+    opacity: 1;
 }
 
 p.draws__message {
@@ -224,7 +226,6 @@ h2.result-counter {
 h2.show-result {
     margin-bottom: 50px;
     font-size: 1.6rem;
-
 }
 
 span.name-result {
