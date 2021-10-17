@@ -54,6 +54,7 @@ section.draws {
     transition: all .5s;
 }
 .show.alert-message {
+    padding: 0 10px;
     width: 290px;
     height: 70px;
     opacity: 1;

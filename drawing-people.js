@@ -79,9 +79,6 @@ btnAdd.addEventListener("click", () => {
     document.querySelector("input").focus();
 
     // console.log(names);
-
-    // select all removeIcons of the list
-    let removeIcons = document.querySelectorAll("i.fa-times-circle");
 });
 
 ulContainer.addEventListener("click", (e) => {
@@ -95,6 +92,9 @@ ulContainer.addEventListener("click", (e) => {
             parentItem.firstElementChild.style.display = "block";
         }
         else {
+            showMessage();
+            alertTitle.innerText = "After changing the name or number, press enter!";
+
             inputItem.style.display = "inline-block";
             inputItem.value = parentItem.firstElementChild.textContent;
             parentItem.firstElementChild.style.display = "none";
