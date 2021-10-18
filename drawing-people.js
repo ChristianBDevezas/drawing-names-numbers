@@ -31,7 +31,7 @@ function showMessage() {
 function updateListItems() {
     names = [];
 
-    let allItems = document.querySelectorAll("li");
+    let allItems = document.querySelectorAll("span");
     allItems.forEach((item) => {
         names.push(item.innerText);
     });
@@ -90,6 +90,8 @@ ulContainer.addEventListener("click", (e) => {
         if(inputItem.style.display == "inline-block") {
             inputItem.style.display = "none";
             parentItem.firstElementChild.style.display = "block";
+
+            drawNames.classList.remove("disable-btn");
         }
         else {
             showMessage();
@@ -98,6 +100,8 @@ ulContainer.addEventListener("click", (e) => {
             inputItem.style.display = "inline-block";
             inputItem.value = parentItem.firstElementChild.textContent;
             parentItem.firstElementChild.style.display = "none";
+
+            drawNames.classList.add("disable-btn");
         }
         inputItem.focus();
 
@@ -105,7 +109,6 @@ ulContainer.addEventListener("click", (e) => {
 
         inputItem.addEventListener("keypress", (e) => {
             if(e.keyCode === 13) {
-
                 if(inputItem.value !== '') {
                     parentItem.firstElementChild.textContent = inputItem.value;
                     parentItem.firstElementChild.style.display = "block";
@@ -115,6 +118,8 @@ ulContainer.addEventListener("click", (e) => {
                     var li = inputItem.parentNode;
                     li.parentNode.removeChild(li);
                 }
+
+                drawNames.classList.remove("disable-btn");
             }
 
             updateListItems();

@@ -87,14 +87,13 @@ input[type="text"] {
 input[type="text"]:focus {
     border-color: #416ada;
 }
+::placeholder {
+    font-size: .8rem;
+}
 
 .draws__input-add {
     display: flex;
     justify-content: center;
-}
-
-::placeholder {
-    font-size: .8rem;
 }
 
 button {
@@ -218,6 +217,10 @@ p.draws__message.show-message {
 .draws__result {
     margin-top: 28px;
     text-align: center;
+}
+
+.draw.disable-btn {
+    pointer-events: none;
 }
 
 h2.result-counter {
