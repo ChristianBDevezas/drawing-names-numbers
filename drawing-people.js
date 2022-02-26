@@ -1,4 +1,5 @@
-const btnAdd = document.querySelector("button.add");
+// const btnAdd = document.querySelector("button.add");
+const form = document.querySelector("form");
 const ulContainer = document.querySelector("ul.container-list");
 const clearMessage = document.querySelector("p.draws__message");
 const counterResult = document.querySelector("h2.result-counter");
@@ -37,7 +38,8 @@ function updateListItems() {
     });
 }
 
-btnAdd.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     const inputValue = document.querySelector("input").value;
 
     if(inputValue == "") {
